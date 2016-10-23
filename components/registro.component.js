@@ -11,17 +11,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 // Importar el núcleo de Angular
 var core_1 = require('@angular/core');
 // Decorador component, indicamos en que etiqueta se va a cargar la 
-var AppComponent = (function () {
-    function AppComponent() {
+var RegistroComponent = (function () {
+    function RegistroComponent() {
     }
-    AppComponent = __decorate([
+    RegistroComponent = __decorate([
         core_1.Component({
-            selector: 'my-app',
-            template: '<h1>Luis</h1>'
+            selector: 'registro',
+            template: '<h1>componente de registro</h1>'
         }), 
         __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    ], RegistroComponent);
+    return RegistroComponent;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.RegistroComponent = RegistroComponent;
+//# sourceMappingURL=registro.component.js.map
