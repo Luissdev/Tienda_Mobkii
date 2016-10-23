@@ -10,19 +10,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 // Importar el núcleo de Angular
 var core_1 = require('@angular/core');
+var login_service_1 = require('.././services/login.service');
 // Decorador component, indicamos en que etiqueta se va a cargar la 
 var LoginComponent = (function () {
-    function LoginComponent() {
+    function LoginComponent(_loginService) {
+        this._loginService = _loginService;
     }
     LoginComponent.prototype.ngOnInit = function () {
-        this.usuario = { "nombre": '', "correo": '' };
+        this.usuario = { "correo": '', "contrasenia": '' };
+    };
+    LoginComponent.prototype.getLogin = function () {
+        this._loginService.getLogin(this.usuario).then(function (respuesta) { return localStorage.setItem('token', JSON.stringify(respuesta)); });
+        if (this.token != null) {
+            localStorage.setItem('token', JSON.stringify(this.token));
+        }
     };
     LoginComponent = __decorate([
         core_1.Component({
             // selector: 'login',
-            template: '<h1>login component</h1>'
+            templateUrl: '/app/templates/login.template.html',
+            providers: [login_service_1.LoginService]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [login_service_1.LoginService])
     ], LoginComponent);
     return LoginComponent;
 }());

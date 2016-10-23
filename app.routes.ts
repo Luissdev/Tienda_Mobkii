@@ -6,6 +6,7 @@ import { RegistroComponent } from './components/registro.component'
 
 export const routes: RouterConfig = [
     { path: '*', component: DefaultComponent },
+    { path: '', component: DefaultComponent },
     { path: 'login', component: LoginComponent },
     { path: 'registro', component: RegistroComponent },
 ];

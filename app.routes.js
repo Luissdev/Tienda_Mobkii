@@ -5,6 +5,7 @@ var default_component_1 = require('./components/default.component');
 var registro_component_1 = require('./components/registro.component');
 exports.routes = [
     { path: '*', component: default_component_1.DefaultComponent },
+    { path: '', component: default_component_1.DefaultComponent },
     { path: 'login', component: login_component_1.LoginComponent },
     { path: 'registro', component: registro_component_1.RegistroComponent },
 ];

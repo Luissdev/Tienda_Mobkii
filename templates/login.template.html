@@ -1,10 +1,10 @@
 <h1>Inicio de sesion</h1>
 
 <form action="">
-    <label for="">Correo</label>
-    <input type="text">
-    <label for="">Contraseña</label>
-    <input type="password">
+	<label for="">Correo</label>
+	<input type="text" [(ngModel)]="usuario.correo">
+	<label for="">Contraseña</label>
+	<input type="password" [(ngModel)]="usuario.contrasenia">
 
-    <input type="submit" value="Iniciar sesion" (click)="login()">
+	<input type="submit" value="Iniciar sesion" (click)="getLogin()">
 </form>
