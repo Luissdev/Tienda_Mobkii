@@ -1,3 +1,7 @@
-import { bootstrap }    from '@angular/platform-browser-dynamic';
+import { bootstrap } from '@angular/platform-browser-dynamic';
 import { AppComponent } from './app.component';
-bootstrap(AppComponent);
+
+//Importar las rutas
+import { APP_ROUTER_PROVIDER } from './app.routes'
+
+bootstrap(AppComponent, [APP_ROUTER_PROVIDER]).catch(error => console.log(error));

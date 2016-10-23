@@ -14,9 +14,12 @@ var core_1 = require('@angular/core');
 var LoginComponent = (function () {
     function LoginComponent() {
     }
+    LoginComponent.prototype.ngOnInit = function () {
+        this.usuario = { "nombre": '', "correo": '' };
+    };
     LoginComponent = __decorate([
         core_1.Component({
-            selector: 'login',
+            // selector: 'login',
             template: '<h1>login component</h1>'
         }), 
         __metadata('design:paramtypes', [])

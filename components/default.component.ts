@@ -4,7 +4,7 @@ import {Component} from '@angular/core';
 // Decorador component, indicamos en que etiqueta se va a cargar la 
 
 @Component({
-    selector: 'default',
+    // selector: 'default',
     template: '<h1>Componente or default</h1>'
 })
  
