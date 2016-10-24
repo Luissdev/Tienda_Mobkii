@@ -1,0 +1,27 @@
+<h1>Pedido no. {{id}}</h1>
+
+
+
+<table id="myTable" class="display" cellspacing="0" width="100%">
+	<thead>
+		<tr>
+			<th>Nombre</th>
+			<th>Precio</th>
+			<th>Cantidad</th>
+		</tr>
+	</thead>
+	<tfoot>
+		<tr>
+			<th>Nombre</th>
+			<th>Precio</th>
+			<th>cantidad</th>
+		</tr>
+	</tfoot>
+	<tbody>
+		<tr *ngFor="let item of pedido">
+			<td>{{item.nombre}}</td>
+			<td>{{item.precio}}</td>
+			<td>{{item.cantidad}}</td>
+		</tr>
+	</tbody>
+</table>

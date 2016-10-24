@@ -10,16 +10,70 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 // Importar el núcleo de Angular
 var core_1 = require('@angular/core');
+var pedido_service_1 = require('.././services/pedido.service');
 // Decorador component, indicamos en que etiqueta se va a cargar la 
 var CarritoComponent = (function () {
-    function CarritoComponent() {
+    function CarritoComponent(_pedidoService) {
+        this._pedidoService = _pedidoService;
+        this.carrito = [];
     }
+    CarritoComponent.prototype.crearPedido = function () {
+        var token = localStorage.getItem('token');
+        this._pedidoService.crearPedido(token, this.carrito).then(function (respuesta) { return console.log(respuesta); });
+    };
+    CarritoComponent.prototype.sumarItem = function (id) {
+        var cantidad = 0;
+        for (var _i = 0, _a = this.carrito; _i < _a.length; _i++) {
+            var item = _a[_i];
+            if (item.id == id) {
+                cantidad = item.cantidad += 1;
+                console.log('Aqui esta sumando la cantidad' + cantidad);
+                localStorage.setItem('carrito', JSON.stringify(this.carrito));
+                this.total += item.precio;
+                console.log(item.precio);
+                return 1;
+            }
+        }
+    };
+    CarritoComponent.prototype.precioTotal = function () {
+        for (var _i = 0, _a = this.carrito; _i < _a.length; _i++) {
+            var item = _a[_i];
+            this.total += item.precio * item.cantidad;
+            console.log(this.total);
+        }
+        return this.total;
+    };
+    CarritoComponent.prototype.restarItem = function (id) {
+        var cantidad = 0;
+        for (var _i = 0, _a = this.carrito; _i < _a.length; _i++) {
+            var item = _a[_i];
+            if (item.id == id) {
+                if (item.cantidad >= 1) {
+                    cantidad = item.cantidad -= 1;
+                    console.log('Aqui esta sumando la cantidad' + cantidad);
+                    localStorage.setItem('carrito', JSON.stringify(this.carrito));
+                    this.total -= item.precio;
+                    console.log(item.precio);
+                    return 1;
+                }
+            }
+        }
+    };
+    CarritoComponent.prototype.ngOnInit = function () {
+        var check_carrito = localStorage.getItem('carrito');
+        console.log(check_carrito);
+        if (check_carrito) {
+            this.carrito = JSON.parse(check_carrito);
+        }
+        this.precioTotal();
+    };
     CarritoComponent = __decorate([
         core_1.Component({
             // selector: 'registro',
-            template: '<h1>componente del carrito</h1>'
+            templateUrl: '/app/templates/carrito.template.html',
+            providers: [pedido_service_1.PedidoService]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [pedido_service_1.PedidoService])
     ], CarritoComponent);
     return CarritoComponent;
 }());

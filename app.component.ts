@@ -33,20 +33,6 @@ export class AppComponent {
     }
 
     mostrarCategoria(id) {
-        console.log(id);
-        this._router.navigate(['/categoria/', id]);
+        this._router.navigate(['/categori/', id]);
     }
-    // public sesion = false;
-    // public token;
-    // constructor(private _loginService: LoginService) { }
-    // ngOnInit() {
-    //     this.token = localStorage.getItem('token');
-    //     this._loginService.checkToken(this.token).then(respuesta => {
-    //         this.token = respuesta[0].id
-    //         if (+this.token > 0) {
-    //             localStorage.setItem('sesion', 'true');
-    //         }
-    //     }
-    //     );
-    // }
 }

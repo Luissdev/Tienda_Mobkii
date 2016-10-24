@@ -10,35 +10,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 // Importar el núcleo de Angular
 var core_1 = require('@angular/core');
-var pedido_service_1 = require('.././services/pedido.service');
 var router_1 = require('@angular/router');
 // Decorador component, indicamos en que etiqueta se va a cargar la 
-var Pedido_DetalleComponent = (function () {
-    function Pedido_DetalleComponent(_pedido, _router, _activatedRoute) {
-        this._pedido = _pedido;
+var ComodinComponent = (function () {
+    function ComodinComponent(_router, _activatedRoute) {
         this._router = _router;
         this._activatedRoute = _activatedRoute;
     }
-    Pedido_DetalleComponent.prototype.ngOnInit = function () {
-        var _this = this;
+    ComodinComponent.prototype.ngOnInit = function () {
         var id;
+        console.log(id);
         this._activatedRoute.params.subscribe(function (params) {
             id = Number.parseInt(params['id']);
         });
-        var token = localStorage.getItem('token').replace('"', '');
-        var datos = { token: token, "pedido_id": id };
-        console.log(datos);
-        this._pedido.getPedidoDetalle(datos).then(function (respuesta) { return _this.pedido = respuesta; });
+        this._router.navigate(['/categoria/', id]);
     };
-    Pedido_DetalleComponent = __decorate([
+    ComodinComponent = __decorate([
         core_1.Component({
             // selector: 'registro',
-            templateUrl: '/app/templates/pedido_detalle.template.html',
-            providers: [pedido_service_1.PedidoService]
+            template: '',
         }), 
-        __metadata('design:paramtypes', [pedido_service_1.PedidoService, router_1.Router, router_1.ActivatedRoute])
-    ], Pedido_DetalleComponent);
-    return Pedido_DetalleComponent;
+        __metadata('design:paramtypes', [router_1.Router, router_1.ActivatedRoute])
+    ], ComodinComponent);
+    return ComodinComponent;
 }());
-exports.Pedido_DetalleComponent = Pedido_DetalleComponent;
-//# sourceMappingURL=pedido_detalle.component.js.map
+exports.ComodinComponent = ComodinComponent;
+//# sourceMappingURL=comodin.component.js.map

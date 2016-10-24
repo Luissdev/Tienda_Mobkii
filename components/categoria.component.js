@@ -14,25 +14,65 @@ var router_1 = require('@angular/router');
 var categoria_service_1 = require('.././services/categoria.service');
 // Decorador component, indicamos en que etiqueta se va a cargar la 
 var CategoriaComponent = (function () {
-    function CategoriaComponent(_router, _categoriaService) {
+    function CategoriaComponent(_router, _categoriaService, _activatedRoute) {
+        var _this = this;
         this._router = _router;
         this._categoriaService = _categoriaService;
-    }
-    CategoriaComponent.prototype.getProductos = function (id) {
-        var _this = this;
+        this._activatedRoute = _activatedRoute;
+        this.carrito = [];
+        var id;
+        console.log(id);
+        this._activatedRoute.params.subscribe(function (params) {
+            id = Number.parseInt(params['id']);
+        });
         this._categoriaService.getProductos(id).then(function (respuesta) { return _this.productos = respuesta; });
+    }
+    CategoriaComponent.prototype.agregarCarrito = function (id, nombre, precio) {
+        var check_carrito = JSON.parse(localStorage.getItem('carrito'));
+        if (check_carrito) {
+            this.carrito = check_carrito;
+            var checar = this.sumar_item(id);
+            if (+checar === 1) {
+                console.log('Este producto ya se encuentra en su carrito');
+            }
+            else {
+                var articulo = { "id": id, "nombre": nombre, "precio": precio, "cantidad": 1 };
+                this.carrito.push(articulo);
+                localStorage.setItem('carrito', JSON.stringify(this.carrito));
+            }
+        }
+        else {
+            var articulo = { "id": id, "nombre": nombre, "precio": precio, "cantidad": 1 };
+            this.carrito.push(articulo);
+            localStorage.setItem('carrito', JSON.stringify(this.carrito));
+        }
     };
-    CategoriaComponent.prototype.mostrarCategoria = function (id) {
+    CategoriaComponent.prototype.sumar_item = function (id) {
+        var index = 0;
+        var i = 0;
+        var cantidad = 0;
+        for (var _i = 0, _a = this.carrito; _i < _a.length; _i++) {
+            var item = _a[_i];
+            i++;
+            if (item.id == id) {
+                if (confirm("Este producto ya se encuentra en su carrito, ¿Desea agregarlo de nuevo?")) {
+                    cantidad = item.cantidad += 1;
+                    console.log('Aqui esta sumando la cantidad' + cantidad);
+                    localStorage.setItem('carrito', JSON.stringify(this.carrito));
+                }
+                return 1;
+            }
+        }
     };
     CategoriaComponent.prototype.ngOnInit = function () {
-        console.log('categoria component');
     };
     CategoriaComponent = __decorate([
         core_1.Component({
             // selector: 'registro',
-            template: '<h1>componente de registro</h1>'
+            templateUrl: '/app/templates/categoria.template.html',
+            providers: [categoria_service_1.CategoriaService]
         }), 
-        __metadata('design:paramtypes', [router_1.Router, categoria_service_1.CategoriaService])
+        __metadata('design:paramtypes', [router_1.Router, categoria_service_1.CategoriaService, router_1.ActivatedRoute])
     ], CategoriaComponent);
     return CategoriaComponent;
 }());

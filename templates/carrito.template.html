@@ -1,0 +1,45 @@
+<table id="myTable" class="display" cellspacing="0" width="100%">
+	<thead>
+		<tr>
+			<th>Nombre</th>
+			<th>Precio Unidad</th>
+			<th>Cantidad</th>
+			<th>Precio Unidades</th>
+			<th>Agregar</th>
+			<th>Quitar</th>
+	</thead>
+	<tfoot>
+		<tr>
+			<th>Nombre</th>
+			<th>Precio Unidad</th>
+			<th>Cantidad</th>
+			<th>Precio Unidades</th>
+			<th>Agregar</th>
+			<th>Quitar</th>
+		</tr>
+	</tfoot>
+	<tbody>
+		<tr *ngFor="let item of carrito">
+			<td>{{item.nombre}}</td>
+			<td>{{item.precio}}</td>
+			<td>{{item.cantidad}}</td>
+			<td>{{item.precio * item.cantidad }} </td>
+			<td (click)="sumarItem(item.id)">Agregar + </td>
+			<td (click)="restarItem(item.id)"> Quitar - </td>
+		</tr>
+	</tbody>
+</table>
+
+<div>
+
+	<h1>Precio total: {{total | number }}</h1>
+
+	<button (click)="crearPedido()">Pagar</button>
+</div>
+
+<div>
+	No tiene ningun producto en su carrito
+</div>
+<div *ngIf="pagado === true">
+	Gracias, su pedido se ha creado
+</div>

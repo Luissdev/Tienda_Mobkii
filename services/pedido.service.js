@@ -17,14 +17,21 @@ var PedidoService = (function () {
         this.url = 'http://laracars.com/auth/';
         this.headers = new http_1.Headers();
     }
+    PedidoService.prototype.crearPedido = function (token, productos) {
+        var datos = { "token": token, "productos": productos };
+        return this._http.post(this.url + 'pedido/crear-pedido', JSON.stringify(datos), { headers: this.headers })
+            .toPromise()
+            .then(function (respuesta) { return console.log(respuesta); });
+    };
     PedidoService.prototype.getPedidos = function (id) {
         console.log(id);
         return this._http.get(this.url + 'pedido/pedidos/' + id)
             .toPromise()
             .then(function (respuesta) { return respuesta.json(); });
     };
-    PedidoService.prototype.getProductos = function (id) {
-        return this._http.get(this.url + 'categoria/productos')
+    PedidoService.prototype.getPedidoDetalle = function (datos) {
+        console.log(datos);
+        return this._http.post(this.url + 'pedido/pedido-detalle', JSON.stringify(datos), { headers: this.headers })
             .toPromise()
             .then(function (respuesta) { return respuesta.json(); });
     };

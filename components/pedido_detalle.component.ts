@@ -7,22 +7,28 @@ import { ROUTER_DIRECTIVES, Router, ActivatedRoute } from '@angular/router'
 
 @Component({
     // selector: 'registro',
-    template: '<h1>hola</h1>',
+    templateUrl: '/app/templates/pedido_detalle.template.html',
     providers: [PedidoService]
 })
 
 // Clase del componente donde irán los datos y funcionalidades
 export class Pedido_DetalleComponent implements OnInit {
-    public pedidos;
-    constructor(private _pedido: PedidoService, private _router: Router) { }
-
-    getDetalle(id) {
-        this._router.navigate(['/pedido/', id]);
-    }
+    public pedido;
+    constructor(private _pedido: PedidoService,
+        private _router: Router,
+        private _activatedRoute: ActivatedRoute) { }
 
     ngOnInit() {
-        let token = localStorage.getItem('token');
-        this._pedido.getPedidos(token).then(respuesta => this.pedidos = respuesta);
+        let id;
+        this._activatedRoute.params.subscribe(
+            params => {
+                id = Number.parseInt(params['id']);
+            }
+        )
+        let token = localStorage.getItem('token').replace('"', '');
+        let datos = { token, "pedido_id": id }
+        console.log(datos);
+        this._pedido.getPedidoDetalle(datos).then(respuesta => this.pedido = respuesta);
     }
 
 }

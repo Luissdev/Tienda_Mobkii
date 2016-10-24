@@ -17,7 +17,7 @@ export class CategoriaService {
     }
 
     getProductos(id) {
-        return this._http.get(this.url + 'categoria/productos')
+        return this._http.get(this.url + 'categoria/productos/' + id)
             .toPromise()
             .then(respuesta => respuesta.json());
     }

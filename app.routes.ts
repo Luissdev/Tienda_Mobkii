@@ -8,6 +8,7 @@ import { PedidoComponent } from './components/pedido.component'
 import { Pedido_DetalleComponent } from './components/pedido_detalle.component'
 import { CategoriaComponent } from './components/categoria.component'
 import { CarritoComponent } from './components/carrito.component'
+import { ComodinComponent } from './components/comodin.component'
 import { AppComponent } from './app.component'
 
 export const routes: RouterConfig = [
@@ -17,6 +18,7 @@ export const routes: RouterConfig = [
     { path: 'login', component: LoginComponent },
     { path: 'registro', component: RegistroComponent },
     { path: 'categoria/:id', component: CategoriaComponent },
+    { path: 'categori/:id', component: ComodinComponent },
     { path: 'perfil', component: PerfilComponent },
     { path: 'carrito', component: CarritoComponent },
     { path: 'pedidos', component: PedidoComponent },

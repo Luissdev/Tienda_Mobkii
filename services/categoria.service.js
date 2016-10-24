@@ -23,7 +23,7 @@ var CategoriaService = (function () {
             .then(function (respuesta) { return respuesta.json(); });
     };
     CategoriaService.prototype.getProductos = function (id) {
-        return this._http.get(this.url + 'categoria/productos')
+        return this._http.get(this.url + 'categoria/productos/' + id)
             .toPromise()
             .then(function (respuesta) { return respuesta.json(); });
     };

@@ -33,8 +33,7 @@ var AppComponent = (function () {
         this._categoriaService.getCategorias().then(function (respuesta) { return _this.categorias = respuesta; });
     }
     AppComponent.prototype.mostrarCategoria = function (id) {
-        console.log(id);
-        this._router.navigate(['/categoria/', id]);
+        this._router.navigate(['/categori/', id]);
     };
     AppComponent = __decorate([
         core_1.Component({
