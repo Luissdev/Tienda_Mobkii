@@ -22,7 +22,7 @@ var AppComponent = (function () {
         this.sesion = false;
         var token = localStorage.getItem('token');
         console.log(token);
-        if (token != '' || token != null || token != 'null') {
+        if (token) {
             this.sesion = true;
             console.log('no entra');
         }

@@ -22,7 +22,7 @@ export class AppComponent {
     constructor(private _router: Router, private _categoriaService: CategoriaService) {
         let token = localStorage.getItem('token');
         console.log(token);
-        if (token != '' || token != null || token != 'null') {
+        if (token) {
             this.sesion = true;
             console.log('no entra')
         } else {

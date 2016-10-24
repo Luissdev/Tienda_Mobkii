@@ -23,12 +23,12 @@ export class LoginComponent implements OnInit {
         let token = localStorage.getItem('token');
         this.usuario = { "correo": '', "contrasenia": '' }
         // console.log(token);
-        if (token === '' || !token || token.length < 100) {
+        if (!token) {
             this.sesion = false;
-            // console.log('aca tambien');
+            console.log('el token no es valido');
         } else {
             this._router.navigate(['/inicio']);
-            // console.log('aca no');
+            console.log('el token es valido');
         }
     }
 
