@@ -35,4 +35,9 @@ export class AppComponent {
     mostrarCategoria(id) {
         this._router.navigate(['/categori/', id]);
     }
+
+    salir() {
+        localStorage.removeItem('token');
+        this._router.navigate(['/categori/', -1]);
+    }
 }

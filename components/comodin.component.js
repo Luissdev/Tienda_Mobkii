@@ -23,7 +23,12 @@ var ComodinComponent = (function () {
         this._activatedRoute.params.subscribe(function (params) {
             id = Number.parseInt(params['id']);
         });
-        this._router.navigate(['/categoria/', id]);
+        if (id === -1) {
+            this._router.navigate(['/login']);
+        }
+        else {
+            this._router.navigate(['/categoria/', id]);
+        }
     };
     ComodinComponent = __decorate([
         core_1.Component({

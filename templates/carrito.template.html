@@ -1,4 +1,4 @@
-<table id="myTable" class="display" cellspacing="0" width="100%">
+<table id="myTable" class="display" cellspacing="0" width="100%" *ngIf="pagado === false && carrito.length != 0">
 	<thead>
 		<tr>
 			<th>Nombre</th>
@@ -30,14 +30,14 @@
 	</tbody>
 </table>
 
-<div>
+<div *ngIf="carrito.length != 0">
 
 	<h1>Precio total: {{total | number }}</h1>
 
 	<button (click)="crearPedido()">Pagar</button>
 </div>
 
-<div>
+<div *ngIf="carrito.length === 0">
 	No tiene ningun producto en su carrito
 </div>
 <div *ngIf="pagado === true">

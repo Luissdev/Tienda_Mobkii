@@ -35,6 +35,10 @@ var AppComponent = (function () {
     AppComponent.prototype.mostrarCategoria = function (id) {
         this._router.navigate(['/categori/', id]);
     };
+    AppComponent.prototype.salir = function () {
+        localStorage.removeItem('token');
+        this._router.navigate(['/categori/', -1]);
+    };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',

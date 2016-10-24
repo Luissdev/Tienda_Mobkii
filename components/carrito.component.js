@@ -16,10 +16,14 @@ var CarritoComponent = (function () {
     function CarritoComponent(_pedidoService) {
         this._pedidoService = _pedidoService;
         this.carrito = [];
+        this.total = 0;
+        this.pagado = false;
     }
     CarritoComponent.prototype.crearPedido = function () {
         var token = localStorage.getItem('token');
         this._pedidoService.crearPedido(token, this.carrito).then(function (respuesta) { return console.log(respuesta); });
+        localStorage.removeItem('carrito');
+        this.pagado = true;
     };
     CarritoComponent.prototype.sumarItem = function (id) {
         var cantidad = 0;

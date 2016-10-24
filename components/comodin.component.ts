@@ -22,6 +22,10 @@ export class ComodinComponent implements OnInit {
         this._activatedRoute.params.subscribe(params => {
             id = Number.parseInt(params['id']);
         })
-        this._router.navigate(['/categoria/', id]);
+        if (id === -1) {
+            this._router.navigate(['/login']);
+        } else {
+            this._router.navigate(['/categoria/', id]);
+        }
     }
 }

@@ -13,7 +13,9 @@ import { PedidoService } from '.././services/pedido.service'
 // Clase del componente donde irán los datos y funcionalidades
 export class CarritoComponent implements OnInit {
     public carrito = [];
-    public total: number;
+    public total: number = 0;
+    public pagado = false;
+
 
     constructor(private _pedidoService: PedidoService) { }
 
@@ -21,6 +23,8 @@ export class CarritoComponent implements OnInit {
     crearPedido() {
         let token = localStorage.getItem('token');
         this._pedidoService.crearPedido(token, this.carrito).then(respuesta => console.log(respuesta));
+        localStorage.removeItem('carrito');
+        this.pagado = true;
     }
     sumarItem(id) {
         let cantidad = 0;
