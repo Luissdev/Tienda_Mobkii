@@ -11,27 +11,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
 require('rxjs/add/operator/toPromise');
-var CategoriaService = (function () {
-    function CategoriaService(_http) {
+var ProductoService = (function () {
+    function ProductoService(_http) {
         this._http = _http;
         this.url = 'http://laracars.com/auth/';
         this.headers = new http_1.Headers();
     }
-    CategoriaService.prototype.getCategorias = function () {
-        return this._http.get(this.url + 'categoria/categorias')
+    ProductoService.prototype.getDestacados = function () {
+        return this._http.get(this.url + 'producto/destacados')
             .toPromise()
             .then(function (respuesta) { return respuesta.json(); });
     };
-    CategoriaService.prototype.getProductos = function (id) {
-        return this._http.get(this.url + 'categoria/productos')
-            .toPromise()
-            .then(function (respuesta) { return respuesta.json(); });
-    };
-    CategoriaService = __decorate([
+    ProductoService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])
-    ], CategoriaService);
-    return CategoriaService;
+    ], ProductoService);
+    return ProductoService;
 }());
-exports.CategoriaService = CategoriaService;
-//# sourceMappingURL=categoria.service.js.map
+exports.ProductoService = ProductoService;
+//# sourceMappingURL=producto.service.js.map

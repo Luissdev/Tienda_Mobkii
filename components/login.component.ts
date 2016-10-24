@@ -22,7 +22,8 @@ export class LoginComponent implements OnInit {
     ngOnInit() {
         let token = localStorage.getItem('token');
         this.usuario = { "correo": '', "contrasenia": '' }
-        if (token != '' || !token || token.length < 100) {
+        // console.log(token);
+        if (token === '' || !token || token.length < 100) {
             this.sesion = false;
             // console.log('aca tambien');
         } else {

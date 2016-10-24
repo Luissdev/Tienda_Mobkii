@@ -1,0 +1,27 @@
+{{id}}
+<table id="myTable" class="display" cellspacing="0" width="100%">
+	<thead>
+		<tr>
+			<th>Total</th>
+			<th>ID</th>
+			<th>Productos</th>
+			<th>Fecha</th>
+		</tr>
+	</thead>
+	<tfoot>
+		<tr>
+			<th>Total</th>
+			<th>ID</th>
+			<th>Productos</th>
+			<th>Fecha</th>
+		</tr>
+	</tfoot>
+	<tbody>
+		<tr *ngFor="let item of pedidos" (click)="getDetalle(item.id)">
+			<td>{{item.subtotal}}</td>
+			<td>{{item.id}}</td>
+			<td>{{item.total_producto}}</td>
+			<td>{{item.created_at}}</td>
+		</tr>
+	</tbody>
+</table>

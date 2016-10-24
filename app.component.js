@@ -12,28 +12,38 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var login_service_1 = require('./services/login.service');
+var categoria_service_1 = require('./services/categoria.service');
 // Decorador component, indicamos en que etiqueta se va a cargar la 
 var AppComponent = (function () {
-    function AppComponent(_router) {
+    function AppComponent(_router, _categoriaService) {
+        var _this = this;
         this._router = _router;
+        this._categoriaService = _categoriaService;
         this.sesion = false;
-        if (localStorage.getItem('token')) {
+        var token = localStorage.getItem('token');
+        console.log(token);
+        if (token != '' || token != null || token != 'null') {
             this.sesion = true;
             console.log('no entra');
         }
         else {
             console.log("si entra");
-            this._router.navigateByUrl('/login');
+            this._router.navigate(['/login']);
         }
+        this._categoriaService.getCategorias().then(function (respuesta) { return _this.categorias = respuesta; });
     }
+    AppComponent.prototype.mostrarCategoria = function (id) {
+        console.log(id);
+        this._router.navigate(['/categoria/', id]);
+    };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: '<router-outlet></router-outlet>',
+            templateUrl: './app/templates/layout.template.html',
             directives: [router_1.ROUTER_DIRECTIVES],
-            providers: [login_service_1.LoginService]
+            providers: [login_service_1.LoginService, categoria_service_1.CategoriaService]
         }), 
-        __metadata('design:paramtypes', [router_1.Router])
+        __metadata('design:paramtypes', [router_1.Router, categoria_service_1.CategoriaService])
     ], AppComponent);
     return AppComponent;
 }());

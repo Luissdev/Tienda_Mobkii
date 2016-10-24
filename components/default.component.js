@@ -12,23 +12,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var categoria_service_1 = require('.././services/categoria.service');
+var producto_service_1 = require('.././services/producto.service');
 // Decorador component, indicamos en que etiqueta se va a cargar la 
 var DefaultComponent = (function () {
-    function DefaultComponent(_router, _categoriaService) {
+    function DefaultComponent(_router, _categoriaService, _productoService) {
         this._router = _router;
         this._categoriaService = _categoriaService;
+        this._productoService = _productoService;
     }
     DefaultComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this._categoriaService.getCategorias().then(function (respuesta) { return _this.categorias = respuesta; });
+        this._productoService.getDestacados().then(function (respuesta) { return _this.productos = respuesta; });
     };
     DefaultComponent = __decorate([
         core_1.Component({
             // selector: 'default',
-            templateUrl: '/app/templates/layout.template.html',
-            providers: [categoria_service_1.CategoriaService]
+            templateUrl: '/app/templates/inicio.template.html',
+            directives: [router_1.ROUTER_DIRECTIVES],
+            providers: [categoria_service_1.CategoriaService, producto_service_1.ProductoService]
         }), 
-        __metadata('design:paramtypes', [router_1.Router, categoria_service_1.CategoriaService])
+        __metadata('design:paramtypes', [router_1.Router, categoria_service_1.CategoriaService, producto_service_1.ProductoService])
     ], DefaultComponent);
     return DefaultComponent;
 }());

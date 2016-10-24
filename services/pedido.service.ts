@@ -4,14 +4,15 @@ import 'rxjs/add/operator/toPromise'
 
 
 @Injectable()
-export class CategoriaService {
+export class PedidoService {
     public url = 'http://laracars.com/auth/';
     headers = new Headers();
     constructor(private _http: Http) {
     }
 
-    getCategorias() {
-        return this._http.get(this.url + 'categoria/categorias')
+    getPedidos(id) {
+        console.log(id);
+        return this._http.get(this.url + 'pedido/pedidos/'+id)
             .toPromise()
             .then(respuesta => respuesta.json());
     }

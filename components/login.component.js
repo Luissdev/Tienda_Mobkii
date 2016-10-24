@@ -22,7 +22,8 @@ var LoginComponent = (function () {
     LoginComponent.prototype.ngOnInit = function () {
         var token = localStorage.getItem('token');
         this.usuario = { "correo": '', "contrasenia": '' };
-        if (token != '' || !token || token.length < 100) {
+        // console.log(token);
+        if (token === '' || !token || token.length < 100) {
             this.sesion = false;
         }
         else {

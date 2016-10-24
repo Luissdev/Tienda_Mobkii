@@ -10,31 +10,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 // Importar el núcleo de Angular
 var core_1 = require('@angular/core');
+var pedido_service_1 = require('.././services/pedido.service');
 var router_1 = require('@angular/router');
-var categoria_service_1 = require('.././services/categoria.service');
 // Decorador component, indicamos en que etiqueta se va a cargar la 
-var CategoriaComponent = (function () {
-    function CategoriaComponent(_router, _categoriaService) {
+var PedidoComponent = (function () {
+    function PedidoComponent(_pedido, _router) {
+        this._pedido = _pedido;
         this._router = _router;
-        this._categoriaService = _categoriaService;
     }
-    CategoriaComponent.prototype.getProductos = function (id) {
+    PedidoComponent.prototype.getDetalle = function (id) {
+        this._router.navigate(['/pedido/', id]);
+    };
+    PedidoComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this._categoriaService.getProductos(id).then(function (respuesta) { return _this.productos = respuesta; });
+        var token = localStorage.getItem('token');
+        this._pedido.getPedidos(token).then(function (respuesta) { return _this.pedidos = respuesta; });
     };
-    CategoriaComponent.prototype.mostrarCategoria = function (id) {
-    };
-    CategoriaComponent.prototype.ngOnInit = function () {
-        console.log('categoria component');
-    };
-    CategoriaComponent = __decorate([
+    PedidoComponent = __decorate([
         core_1.Component({
             // selector: 'registro',
-            template: '<h1>componente de registro</h1>'
+            templateUrl: '/app/templates/pedido.template.html',
+            providers: [pedido_service_1.PedidoService]
         }), 
-        __metadata('design:paramtypes', [router_1.Router, categoria_service_1.CategoriaService])
-    ], CategoriaComponent);
-    return CategoriaComponent;
+        __metadata('design:paramtypes', [pedido_service_1.PedidoService, router_1.Router])
+    ], PedidoComponent);
+    return PedidoComponent;
 }());
-exports.CategoriaComponent = CategoriaComponent;
-//# sourceMappingURL=categoria.component.js.map
+exports.PedidoComponent = PedidoComponent;
+//# sourceMappingURL=pedido.component.js.map
