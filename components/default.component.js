@@ -10,16 +10,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 // Importar el núcleo de Angular
 var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
+var categoria_service_1 = require('.././services/categoria.service');
 // Decorador component, indicamos en que etiqueta se va a cargar la 
 var DefaultComponent = (function () {
-    function DefaultComponent() {
+    function DefaultComponent(_router, _categoriaService) {
+        this._router = _router;
+        this._categoriaService = _categoriaService;
     }
+    DefaultComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this._categoriaService.getCategorias().then(function (respuesta) { return _this.categorias = respuesta; });
+    };
     DefaultComponent = __decorate([
         core_1.Component({
             // selector: 'default',
-            template: '<h1>Componente or default</h1>'
+            templateUrl: '/app/templates/layout.template.html',
+            providers: [categoria_service_1.CategoriaService]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [router_1.Router, categoria_service_1.CategoriaService])
     ], DefaultComponent);
     return DefaultComponent;
 }());

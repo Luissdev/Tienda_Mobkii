@@ -11,17 +11,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 // Importar el núcleo de Angular
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
+var login_service_1 = require('./services/login.service');
 // Decorador component, indicamos en que etiqueta se va a cargar la 
 var AppComponent = (function () {
-    function AppComponent() {
+    function AppComponent(_router) {
+        this._router = _router;
+        this.sesion = false;
+        if (localStorage.getItem('token')) {
+            this.sesion = true;
+            console.log('no entra');
+        }
+        else {
+            console.log("si entra");
+            this._router.navigateByUrl('/login');
+        }
     }
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            templateUrl: '/app/templates/layout.template.html',
-            directives: [router_1.ROUTER_DIRECTIVES]
+            template: '<router-outlet></router-outlet>',
+            directives: [router_1.ROUTER_DIRECTIVES],
+            providers: [login_service_1.LoginService]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [router_1.Router])
     ], AppComponent);
     return AppComponent;
 }());

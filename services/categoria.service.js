@@ -11,28 +11,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
 require('rxjs/add/operator/toPromise');
-var LoginService = (function () {
-    function LoginService(_http) {
+var CategoriaService = (function () {
+    function CategoriaService(_http) {
         this._http = _http;
         this.url = 'http://laracars.com/auth/';
         this.headers = new http_1.Headers();
     }
-    LoginService.prototype.getLogin = function (usuario) {
-        this.headers.append('Content-Type', 'application/json');
-        console.log(usuario);
-        return this._http.post(this.url + 'cliente/login', JSON.stringify(usuario), { headers: this.headers })
+    CategoriaService.prototype.getCategorias = function () {
+        return this._http.get(this.url + 'categoria/categorias')
             .toPromise()
             .then(function (respuesta) { return respuesta.json(); });
     };
-    LoginService.prototype.checkToken = function (token) {
-        return this._http.get(this.url + 'cliente/token/' + token)
-            .toPromise().then(function (respuesta) { return respuesta.json(); });
-    };
-    LoginService = __decorate([
+    CategoriaService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])
-    ], LoginService);
-    return LoginService;
+    ], CategoriaService);
+    return CategoriaService;
 }());
-exports.LoginService = LoginService;
-//# sourceMappingURL=login.service.js.map
+exports.CategoriaService = CategoriaService;
+//# sourceMappingURL=categoria.service.js.map
