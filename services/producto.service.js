@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
 require('rxjs/add/operator/toPromise');
+require('rxjs/add/operator/map');
 var ProductoService = (function () {
     function ProductoService(_http) {
         this._http = _http;
@@ -18,9 +19,9 @@ var ProductoService = (function () {
         this.headers = new http_1.Headers();
     }
     ProductoService.prototype.getDestacados = function () {
-        return this._http.get(this.url + 'producto/destacados')
-            .toPromise()
-            .then(function (respuesta) { return respuesta.json(); });
+        return this._http.get(this.url + 'producto/destacados').map(function (respuesta) { return respuesta.json(); });
+        // .toPromise()
+        // .then(respuesta => respuesta.json());
     };
     ProductoService.prototype.getProductos = function () {
         return this._http.get(this.url + 'producto/productos')

@@ -26,7 +26,7 @@ export class CategoriaComponent implements OnInit {
         this._activatedRoute.params.subscribe(params => {
             id = Number.parseInt(params['id']);
         })
-        this._categoriaService.getProductos(id).then(respuesta => this.productos = respuesta);
+        this._categoriaService.getProductos(id).subscribe(respuesta => this.productos = respuesta);
     }
 
 

@@ -7,13 +7,24 @@ import { LoginService } from './services/login.service'
 import { CategoriaService } from './services/categoria.service'
 import { ProductoService } from './services/producto.service'
 
+//Animaciones
+import {
+    Input,
+    trigger,
+    state,
+    style,
+    transition,
+    animate
+} from '@angular/core';
+
+
 // Decorador component, indicamos en que etiqueta se va a cargar la 
 
 @Component({
     selector: 'my-app',
     templateUrl: './app/templates/layout.template.html',
     directives: [ROUTER_DIRECTIVES],
-    providers: [LoginService, CategoriaService, ProductoService]
+    providers: [LoginService, CategoriaService, ProductoService],
 })
 
 // Clase del componente donde irán los datos y funcionalidades

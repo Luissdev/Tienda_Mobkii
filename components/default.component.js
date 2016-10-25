@@ -20,7 +20,10 @@ var DefaultComponent = (function () {
         this._router = _router;
         this._categoriaService = _categoriaService;
         this._productoService = _productoService;
-        this._productoService.getDestacados().then(function (respuesta) { return _this.productos = respuesta; });
+        this.productos = [];
+        this._productoService.getDestacados().subscribe(function (respuesta) {
+            _this.productos = respuesta;
+        });
     }
     DefaultComponent.prototype.ngOnInit = function () {
         if (!localStorage.getItem('token')) {

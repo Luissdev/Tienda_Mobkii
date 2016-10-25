@@ -27,7 +27,7 @@ var CategoriaComponent = (function () {
         this._activatedRoute.params.subscribe(function (params) {
             id = Number.parseInt(params['id']);
         });
-        this._categoriaService.getProductos(id).then(function (respuesta) { return _this.productos = respuesta; });
+        this._categoriaService.getProductos(id).subscribe(function (respuesta) { return _this.productos = respuesta; });
     }
     CategoriaComponent.prototype.agregarCarrito = function (id, nombre, precio) {
         var check_carrito = JSON.parse(localStorage.getItem('carrito'));

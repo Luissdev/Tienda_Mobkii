@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
 require('rxjs/add/operator/toPromise');
+require('rxjs/add/operator/map');
 var CategoriaService = (function () {
     function CategoriaService(_http) {
         this._http = _http;
@@ -23,9 +24,9 @@ var CategoriaService = (function () {
             .then(function (respuesta) { return respuesta.json(); });
     };
     CategoriaService.prototype.getProductos = function (id) {
-        return this._http.get(this.url + 'categoria/productos/' + id)
-            .toPromise()
-            .then(function (respuesta) { return respuesta.json(); });
+        return this._http.get(this.url + 'categoria/productos/' + id).map(function (respuesta) { return respuesta.json(); });
+        // .toPromise()
+        // .then(respuesta => respuesta.json());
     };
     CategoriaService = __decorate([
         core_1.Injectable(), 

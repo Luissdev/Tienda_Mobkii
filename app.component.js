@@ -80,7 +80,7 @@ var AppComponent = (function () {
             selector: 'my-app',
             templateUrl: './app/templates/layout.template.html',
             directives: [router_1.ROUTER_DIRECTIVES],
-            providers: [login_service_1.LoginService, categoria_service_1.CategoriaService, producto_service_1.ProductoService]
+            providers: [login_service_1.LoginService, categoria_service_1.CategoriaService, producto_service_1.ProductoService],
         }), 
         __metadata('design:paramtypes', [router_1.Router, categoria_service_1.CategoriaService, producto_service_1.ProductoService])
     ], AppComponent);

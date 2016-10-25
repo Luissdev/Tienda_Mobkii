@@ -14,13 +14,15 @@ import { ProductoService } from '.././services/producto.service'
 
 // Clase del componente donde irán los datos y funcionalidades
 export class DefaultComponent implements OnInit {
-    public productos;
+    public productos = [];
     constructor(
         private _router: Router,
         private _categoriaService: CategoriaService,
         private _productoService: ProductoService) {
 
-        this._productoService.getDestacados().then(respuesta => this.productos = respuesta);
+        this._productoService.getDestacados().subscribe(respuesta => {
+            this.productos = respuesta
+        });
     }
 
     ngOnInit() {

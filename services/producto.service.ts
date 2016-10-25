@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http'
 import 'rxjs/add/operator/toPromise'
+import 'rxjs/add/operator/map'
 
 
 @Injectable()
@@ -11,9 +12,9 @@ export class ProductoService {
     }
 
     getDestacados() {
-        return this._http.get(this.url + 'producto/destacados')
-            .toPromise()
-            .then(respuesta => respuesta.json());
+        return this._http.get(this.url + 'producto/destacados').map(respuesta => respuesta.json());
+            // .toPromise()
+            // .then(respuesta => respuesta.json());
     }
 
     getProductos() {
