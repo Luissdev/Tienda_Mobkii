@@ -1,7 +1,7 @@
 // Importar el núcleo de Angular
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '.././services/login.service'
-import { Router } from '@angular/router'
+import { Router, ROUTER_DIRECTIVES } from '@angular/router'
 import { AppComponent } from '../app.component'
 
 // Decorador component, indicamos en que etiqueta se va a cargar la 
@@ -9,7 +9,8 @@ import { AppComponent } from '../app.component'
 @Component({
     // selector: 'login',
     templateUrl: '/app/templates/login.template.html',
-    providers: [LoginService]
+    providers: [LoginService],
+    directives: [ROUTER_DIRECTIVES]
 })
 
 // Clase del componente donde irán los datos y funcionalidades
@@ -47,5 +48,4 @@ export class LoginComponent implements OnInit {
                 }
             });
     }
-
 }

@@ -1,4 +1,27 @@
-<div class="container" *ngIf="cargado === true">
-	<h4>{{usuario.nombre}}</h4>
-	<h4>{{usuario.correo}}</h4>
+<br><br>
+<div class="container-fluid well span6" *ngIf="cargado === true">
+	<div class="row-fluid">
+		<img src="https://abs.twimg.com/sticky/default_profile_images/default_profile_4_200x200.png" class="img-circle">
+
+		<div class="span8">
+			<h3>{{usuario.nombre}}</h3>
+			<h6>Email: {{usuario.correo}}</h6>
+			<h6>Dirección: {{usuario.direccion}}</h6>
+			<h6>Edad: 1</h6>
+			<h6><a href="#">Más... </a></h6>
+		</div>
+
+		<div class="span2">
+			<div class="btn-group">
+				<a class="btn dropdown-toggle btn-info" data-toggle="dropdown" href="#">
+                    Action 
+                    <span class="icon-cog icon-white"></span><span class="caret"></span>
+                </a>
+				<ul class="dropdown-menu">
+					<li><a href="#"><span class="icon-wrench"></span> Modify</a></li>
+					<li><a href="#"><span class="icon-trash"></span> Delete</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
 </div>

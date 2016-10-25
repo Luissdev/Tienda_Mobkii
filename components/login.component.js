@@ -51,7 +51,8 @@ var LoginComponent = (function () {
         core_1.Component({
             // selector: 'login',
             templateUrl: '/app/templates/login.template.html',
-            providers: [login_service_1.LoginService]
+            providers: [login_service_1.LoginService],
+            directives: [router_1.ROUTER_DIRECTIVES]
         }), 
         __metadata('design:paramtypes', [login_service_1.LoginService, router_1.Router, app_component_1.AppComponent])
     ], LoginComponent);

@@ -24,6 +24,14 @@ export class LoginService {
             .then(respuesta => respuesta.json());
     }
 
+    getRegistro(usuario) {
+        this.headers.append('Content-Type', 'application/json');        
+        console.log(usuario);
+        return this._http.post(this.url + 'cliente/registro', JSON.stringify(usuario), { headers: this.headers })
+            .toPromise()
+            .then(respuesta => respuesta.json());
+    }
+
     checkToken(token) {
         return this._http.get(this.url + 'cliente/token/' + token)
             .toPromise().then(respuesta => respuesta.json());

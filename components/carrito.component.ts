@@ -1,7 +1,7 @@
 // Importar el núcleo de Angular
 import { Component, OnInit } from '@angular/core';
 import { PedidoService } from '.././services/pedido.service'
-
+import { AppComponent } from '../app.component'
 // Decorador component, indicamos en que etiqueta se va a cargar la 
 
 @Component({
@@ -17,7 +17,8 @@ export class CarritoComponent implements OnInit {
     public pagado = false;
 
 
-    constructor(private _pedidoService: PedidoService) { }
+    constructor(private _pedidoService: PedidoService,
+        private _appComponent: AppComponent) { }
 
 
     crearPedido() {
@@ -25,6 +26,8 @@ export class CarritoComponent implements OnInit {
         this._pedidoService.crearPedido(token, this.carrito).then(respuesta => console.log(respuesta));
         localStorage.removeItem('carrito');
         this.pagado = true;
+        this.carrito = [];
+        this._appComponent.productos = 0;
     }
     sumarItem(id) {
         let cantidad = 0;
@@ -62,6 +65,12 @@ export class CarritoComponent implements OnInit {
                 }
             }
         }
+    }
+
+    vaciarCarrito() {
+        this.carrito = [];
+        localStorage.removeItem('carrito');
+        this._appComponent.productos = 0;
     }
     ngOnInit() {
         let check_carrito = localStorage.getItem('carrito');

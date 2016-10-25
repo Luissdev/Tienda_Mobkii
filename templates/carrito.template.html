@@ -30,11 +30,12 @@
 	</tbody>
 </table>
 
-<div *ngIf="carrito.length != 0">
+<div *ngIf="carrito.length >= 1">
 
 	<h1>Precio total: {{total | number }}</h1>
 
 	<button (click)="crearPedido()">Pagar</button>
+	<button (click)="vaciarCarrito()">Vaciar carrito</button>
 </div>
 
 <div *ngIf="carrito.length === 0">

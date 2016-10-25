@@ -29,6 +29,13 @@ var LoginService = (function () {
             .toPromise()
             .then(function (respuesta) { return respuesta.json(); });
     };
+    LoginService.prototype.getRegistro = function (usuario) {
+        this.headers.append('Content-Type', 'application/json');
+        console.log(usuario);
+        return this._http.post(this.url + 'cliente/registro', JSON.stringify(usuario), { headers: this.headers })
+            .toPromise()
+            .then(function (respuesta) { return respuesta.json(); });
+    };
     LoginService.prototype.checkToken = function (token) {
         return this._http.get(this.url + 'cliente/token/' + token)
             .toPromise().then(function (respuesta) { return respuesta.json(); });
