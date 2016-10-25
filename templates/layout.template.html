@@ -68,7 +68,7 @@
 					</form>
 				</div>
 				<datalist id="suggestions">
-					<option  *ngFor="let item of buscar" value="{{item.nombre}}" (click)="mostrarProducto()">
+					<option  *ngIf="buscar.count > 0" *ngFor="let item of buscar" value="{{item.nombre}}" (click)="mostrarProducto()">
 				</datalist>
 			</div>
 			<!-- /.navbar-collapse -->

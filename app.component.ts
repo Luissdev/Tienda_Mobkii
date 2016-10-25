@@ -69,6 +69,8 @@ export class AppComponent {
         } else {
             console.log("por favor escriba el nombre del producto que desea buscar");
         }
+        this.nombre = "";
+        this.buscar = [];
     }
 
     salir() {

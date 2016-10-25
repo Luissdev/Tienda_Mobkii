@@ -65,6 +65,8 @@ var AppComponent = (function () {
         else {
             console.log("por favor escriba el nombre del producto que desea buscar");
         }
+        this.nombre = "";
+        this.buscar = [];
     };
     AppComponent.prototype.salir = function () {
         localStorage.removeItem('token');
