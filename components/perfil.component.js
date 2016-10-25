@@ -10,16 +10,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 // Importar el núcleo de Angular
 var core_1 = require('@angular/core');
+var login_service_1 = require('.././services/login.service');
 // Decorador component, indicamos en que etiqueta se va a cargar la 
 var PerfilComponent = (function () {
-    function PerfilComponent() {
+    function PerfilComponent(_loginService) {
+        this._loginService = _loginService;
+        this.cargado = false;
     }
+    PerfilComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this._loginService.getUsuario(localStorage.getItem('token'))
+            .then(function (respuesta) {
+            _this.usuario = respuesta;
+            _this.cargado = true;
+        });
+    };
     PerfilComponent = __decorate([
         core_1.Component({
             // selector: 'registro',
-            template: '<h1>componente de perfil</h1>'
+            templateUrl: '/app/templates/perfil.template.html',
+            providers: [login_service_1.LoginService]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [login_service_1.LoginService])
     ], PerfilComponent);
     return PerfilComponent;
 }());

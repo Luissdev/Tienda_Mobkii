@@ -12,13 +12,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var categoria_service_1 = require('.././services/categoria.service');
+var app_component_1 = require('../app.component');
 // Decorador component, indicamos en que etiqueta se va a cargar la 
 var CategoriaComponent = (function () {
-    function CategoriaComponent(_router, _categoriaService, _activatedRoute) {
+    function CategoriaComponent(_router, _categoriaService, _activatedRoute, _appComponent) {
         var _this = this;
         this._router = _router;
         this._categoriaService = _categoriaService;
         this._activatedRoute = _activatedRoute;
+        this._appComponent = _appComponent;
         this.carrito = [];
         var id;
         console.log(id);
@@ -39,12 +41,14 @@ var CategoriaComponent = (function () {
                 var articulo = { "id": id, "nombre": nombre, "precio": precio, "cantidad": 1 };
                 this.carrito.push(articulo);
                 localStorage.setItem('carrito', JSON.stringify(this.carrito));
+                this._appComponent.productos++;
             }
         }
         else {
             var articulo = { "id": id, "nombre": nombre, "precio": precio, "cantidad": 1 };
             this.carrito.push(articulo);
             localStorage.setItem('carrito', JSON.stringify(this.carrito));
+            this._appComponent.productos++;
         }
     };
     CategoriaComponent.prototype.sumar_item = function (id) {
@@ -72,7 +76,7 @@ var CategoriaComponent = (function () {
             templateUrl: '/app/templates/categoria.template.html',
             providers: [categoria_service_1.CategoriaService]
         }), 
-        __metadata('design:paramtypes', [router_1.Router, categoria_service_1.CategoriaService, router_1.ActivatedRoute])
+        __metadata('design:paramtypes', [router_1.Router, categoria_service_1.CategoriaService, router_1.ActivatedRoute, app_component_1.AppComponent])
     ], CategoriaComponent);
     return CategoriaComponent;
 }());

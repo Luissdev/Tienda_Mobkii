@@ -12,12 +12,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var login_service_1 = require('.././services/login.service');
 var router_1 = require('@angular/router');
+var app_component_1 = require('../app.component');
 // Decorador component, indicamos en que etiqueta se va a cargar la 
 var LoginComponent = (function () {
-    function LoginComponent(_loginService, _router) {
+    function LoginComponent(_loginService, _router, _appComponent) {
         this._loginService = _loginService;
         this._router = _router;
-        this.sesion = true;
+        this._appComponent = _appComponent;
+        this.sesion = false;
     }
     LoginComponent.prototype.ngOnInit = function () {
         var token = localStorage.getItem('token');
@@ -28,6 +30,7 @@ var LoginComponent = (function () {
             console.log('el token no es valido');
         }
         else {
+            this.sesion = true;
             this._router.navigate(['/inicio']);
             console.log('el token es valido');
         }
@@ -40,6 +43,7 @@ var LoginComponent = (function () {
             if (respuesta != '') {
                 localStorage.setItem('token', JSON.stringify(respuesta));
                 _this._router.navigate(['/inicio']);
+                _this._appComponent.sesion = true;
             }
         });
     };
@@ -49,7 +53,7 @@ var LoginComponent = (function () {
             templateUrl: '/app/templates/login.template.html',
             providers: [login_service_1.LoginService]
         }), 
-        __metadata('design:paramtypes', [login_service_1.LoginService, router_1.Router])
+        __metadata('design:paramtypes', [login_service_1.LoginService, router_1.Router, app_component_1.AppComponent])
     ], LoginComponent);
     return LoginComponent;
 }());

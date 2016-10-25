@@ -19,6 +19,9 @@ import { CategoriaService } from './services/categoria.service'
 export class AppComponent {
     public sesion = false;
     public categorias;
+    public productos: number = 0;
+    // public loading = true;
+
     constructor(private _router: Router, private _categoriaService: CategoriaService) {
         let token = localStorage.getItem('token');
         console.log(token);
@@ -30,6 +33,9 @@ export class AppComponent {
             this._router.navigate(['/login']);
         }
         this._categoriaService.getCategorias().then(respuesta => this.categorias = respuesta);
+        if (localStorage.getItem('carrito')) {
+            this.productos = JSON.parse(localStorage.getItem('carrito')).length;
+        }
     }
 
     mostrarCategoria(id) {
@@ -38,6 +44,9 @@ export class AppComponent {
 
     salir() {
         localStorage.removeItem('token');
+        localStorage.setItem('carrito', JSON.stringify([]));
         this._router.navigate(['/categori/', -1]);
+        this.sesion = false;
+        this.productos = 0;
     }
 }

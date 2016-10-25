@@ -16,13 +16,13 @@ var producto_service_1 = require('.././services/producto.service');
 // Decorador component, indicamos en que etiqueta se va a cargar la 
 var DefaultComponent = (function () {
     function DefaultComponent(_router, _categoriaService, _productoService) {
+        var _this = this;
         this._router = _router;
         this._categoriaService = _categoriaService;
         this._productoService = _productoService;
+        this._productoService.getDestacados().then(function (respuesta) { return _this.productos = respuesta; });
     }
     DefaultComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this._productoService.getDestacados().then(function (respuesta) { return _this.productos = respuesta; });
     };
     DefaultComponent = __decorate([
         core_1.Component({

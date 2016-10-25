@@ -17,6 +17,11 @@ var LoginService = (function () {
         this.url = 'http://laracars.com/auth/';
         this.headers = new http_1.Headers();
     }
+    LoginService.prototype.getUsuario = function (token) {
+        return this._http.get(this.url + 'cliente/cliente/' + token)
+            .toPromise()
+            .then(function (respuesta) { return respuesta.json(); });
+    };
     LoginService.prototype.getLogin = function (usuario) {
         this.headers.append('Content-Type', 'application/json');
         console.log(usuario);

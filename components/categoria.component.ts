@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router'
 import { CategoriaService } from '.././services/categoria.service'
+import { AppComponent } from '../app.component'
 // Decorador component, indicamos en que etiqueta se va a cargar la 
 
 @Component({
@@ -17,7 +18,8 @@ export class CategoriaComponent implements OnInit {
     public bandera: number;
     constructor(private _router: Router,
         private _categoriaService: CategoriaService,
-        private _activatedRoute: ActivatedRoute) {
+        private _activatedRoute: ActivatedRoute,
+        private _appComponent: AppComponent) {
 
         let id;
         console.log(id);
@@ -39,11 +41,13 @@ export class CategoriaComponent implements OnInit {
                 let articulo = { "id": id, "nombre": nombre, "precio": precio, "cantidad": 1 }
                 this.carrito.push(articulo);
                 localStorage.setItem('carrito', JSON.stringify(this.carrito));
+                this._appComponent.productos++;
             }
         } else {
             let articulo = { "id": id, "nombre": nombre, "precio": precio, "cantidad": 1 }
             this.carrito.push(articulo);
             localStorage.setItem('carrito', JSON.stringify(this.carrito));
+            this._appComponent.productos++;
         }
     }
 

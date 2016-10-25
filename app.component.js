@@ -15,11 +15,13 @@ var login_service_1 = require('./services/login.service');
 var categoria_service_1 = require('./services/categoria.service');
 // Decorador component, indicamos en que etiqueta se va a cargar la 
 var AppComponent = (function () {
+    // public loading = true;
     function AppComponent(_router, _categoriaService) {
         var _this = this;
         this._router = _router;
         this._categoriaService = _categoriaService;
         this.sesion = false;
+        this.productos = 0;
         var token = localStorage.getItem('token');
         console.log(token);
         if (token) {
@@ -31,13 +33,19 @@ var AppComponent = (function () {
             this._router.navigate(['/login']);
         }
         this._categoriaService.getCategorias().then(function (respuesta) { return _this.categorias = respuesta; });
+        if (localStorage.getItem('carrito')) {
+            this.productos = JSON.parse(localStorage.getItem('carrito')).length;
+        }
     }
     AppComponent.prototype.mostrarCategoria = function (id) {
         this._router.navigate(['/categori/', id]);
     };
     AppComponent.prototype.salir = function () {
         localStorage.removeItem('token');
+        localStorage.setItem('carrito', JSON.stringify([]));
         this._router.navigate(['/categori/', -1]);
+        this.sesion = false;
+        this.productos = 0;
     };
     AppComponent = __decorate([
         core_1.Component({

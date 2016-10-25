@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '.././services/login.service'
 import { Router } from '@angular/router'
+import { AppComponent } from '../app.component'
 
 // Decorador component, indicamos en que etiqueta se va a cargar la 
 
@@ -15,9 +16,11 @@ import { Router } from '@angular/router'
 export class LoginComponent implements OnInit {
     public usuario;
     public token;
-    public sesion = true;
+    public sesion = false;
 
-    constructor(private _loginService: LoginService, private _router: Router) { }
+    constructor(private _loginService: LoginService,
+        private _router: Router,
+        private _appComponent: AppComponent) { }
 
     ngOnInit() {
         let token = localStorage.getItem('token');
@@ -27,6 +30,7 @@ export class LoginComponent implements OnInit {
             this.sesion = false;
             console.log('el token no es valido');
         } else {
+            this.sesion = true;
             this._router.navigate(['/inicio']);
             console.log('el token es valido');
         }
@@ -39,6 +43,7 @@ export class LoginComponent implements OnInit {
                 if (respuesta != '') {
                     localStorage.setItem('token', JSON.stringify(respuesta));
                     this._router.navigate(['/inicio']);
+                    this._appComponent.sesion = true;
                 }
             });
     }

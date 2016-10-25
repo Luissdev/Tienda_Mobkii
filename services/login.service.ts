@@ -10,6 +10,12 @@ export class LoginService {
     constructor(private _http: Http) {
     }
 
+    getUsuario(token) {
+        return this._http.get(this.url + 'cliente/cliente/' + token)
+            .toPromise()
+            .then(respuesta => respuesta.json());
+    }
+
     getLogin(usuario) {
         this.headers.append('Content-Type', 'application/json');
         console.log(usuario);

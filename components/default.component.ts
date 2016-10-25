@@ -18,9 +18,11 @@ export class DefaultComponent implements OnInit {
     constructor(
         private _router: Router,
         private _categoriaService: CategoriaService,
-        private _productoService: ProductoService) { }
-    
-    ngOnInit() {
+        private _productoService: ProductoService) {
+
         this._productoService.getDestacados().then(respuesta => this.productos = respuesta);
+    }
+
+    ngOnInit() {
     }
 }
