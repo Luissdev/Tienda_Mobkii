@@ -17,15 +17,21 @@ export class ComodinComponent implements OnInit {
     }
 
     ngOnInit() {
-        let id;
-        console.log(id);
+        let id: string;
         this._activatedRoute.params.subscribe(params => {
-            id = Number.parseInt(params['id']);
+            id = params['id'];
+            console.log(id.substr(1));
+            console.log(id.substring(1));
+            console.log(id);
         })
-        if (id === -1) {
-            this._router.navigate(['/login']);
+        if (id.charAt(0) === 'b') {
+            this._router.navigate(['/buscar/', id.substring(1)]);
         } else {
-            this._router.navigate(['/categoria/', id]);
+            if (id.charAt(0) === 'c') {
+                this._router.navigate(['/categoria/', id.substring(1)]);
+            } else {
+                this._router.navigate(['/login']);
+            }
         }
     }
 }

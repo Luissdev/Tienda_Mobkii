@@ -15,4 +15,16 @@ export class ProductoService {
             .toPromise()
             .then(respuesta => respuesta.json());
     }
+
+    getProductos() {
+        return this._http.get(this.url + 'producto/productos')
+            .toPromise()
+            .then(respuesta => respuesta.json());
+    }
+
+    getProductoBuscado(nombre) {
+        return this._http.get(this.url + `producto/producto-buscado/${nombre}`)
+            .toPromise()
+            .then(respuesta => respuesta.json());
+    }
 }

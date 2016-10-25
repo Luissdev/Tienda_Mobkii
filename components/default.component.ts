@@ -24,5 +24,8 @@ export class DefaultComponent implements OnInit {
     }
 
     ngOnInit() {
+        if (!localStorage.getItem('token')) {
+            this._router.navigate(['/login']);
+        }
     }
 }

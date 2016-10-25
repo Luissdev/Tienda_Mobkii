@@ -22,6 +22,16 @@ var ProductoService = (function () {
             .toPromise()
             .then(function (respuesta) { return respuesta.json(); });
     };
+    ProductoService.prototype.getProductos = function () {
+        return this._http.get(this.url + 'producto/productos')
+            .toPromise()
+            .then(function (respuesta) { return respuesta.json(); });
+    };
+    ProductoService.prototype.getProductoBuscado = function (nombre) {
+        return this._http.get(this.url + ("producto/producto-buscado/" + nombre))
+            .toPromise()
+            .then(function (respuesta) { return respuesta.json(); });
+    };
     ProductoService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])

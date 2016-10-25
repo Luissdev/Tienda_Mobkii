@@ -69,6 +69,9 @@ var CategoriaComponent = (function () {
         }
     };
     CategoriaComponent.prototype.ngOnInit = function () {
+        // if (!localStorage.getItem('token')) {
+        //     this._router.navigate(['/login']);
+        // }
     };
     CategoriaComponent = __decorate([
         core_1.Component({

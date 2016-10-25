@@ -1,6 +1,8 @@
 // Importar el núcleo de Angular
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '.././services/login.service'
+import { Router } from '@angular/router'
+
 // Decorador component, indicamos en que etiqueta se va a cargar la 
 
 @Component({
@@ -13,12 +15,17 @@ import { LoginService } from '.././services/login.service'
 export class PerfilComponent implements OnInit {
     public usuario;
     public cargado = false;
-    constructor(private _loginService: LoginService) { }
+    constructor(private _loginService: LoginService, private _router: Router) { }
+
     ngOnInit() {
-        this._loginService.getUsuario(localStorage.getItem('token'))
-            .then(respuesta => {
-                this.usuario = respuesta;
-                this.cargado = true;
-            }); 
+        if (!localStorage.getItem('token')) {
+            this._router.navigate(['/login']);
+        } else {
+            this._loginService.getUsuario(localStorage.getItem('token'))
+                .then(respuesta => {
+                    this.usuario = respuesta;
+                    this.cargado = true;
+                });
+        }
     }
 }

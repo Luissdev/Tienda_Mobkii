@@ -10,41 +10,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 // Importar el núcleo de Angular
 var core_1 = require('@angular/core');
+var producto_service_1 = require('.././services/producto.service');
 var router_1 = require('@angular/router');
 // Decorador component, indicamos en que etiqueta se va a cargar la 
-var ComodinComponent = (function () {
-    function ComodinComponent(_router, _activatedRoute) {
+var BuscarComponent = (function () {
+    function BuscarComponent(productoService, _router, _activatedRoute) {
+        this.productoService = productoService;
         this._router = _router;
         this._activatedRoute = _activatedRoute;
     }
-    ComodinComponent.prototype.ngOnInit = function () {
-        var id;
+    BuscarComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        var nombre;
         this._activatedRoute.params.subscribe(function (params) {
-            id = params['id'];
-            console.log(id.substr(1));
-            console.log(id.substring(1));
-            console.log(id);
+            nombre = params['nombre'];
         });
-        if (id.charAt(0) === 'b') {
-            this._router.navigate(['/buscar/', id.substring(1)]);
-        }
-        else {
-            if (id.charAt(0) === 'c') {
-                this._router.navigate(['/categoria/', id.substring(1)]);
-            }
-            else {
-                this._router.navigate(['/login']);
-            }
-        }
+        this.productoService.getProductoBuscado(nombre).then(function (respuesta) { return _this.productos = respuesta; });
     };
-    ComodinComponent = __decorate([
+    BuscarComponent = __decorate([
         core_1.Component({
             // selector: 'registro',
-            template: '',
+            templateUrl: '/app/templates/categoria.template.html',
+            providers: [producto_service_1.ProductoService]
         }), 
-        __metadata('design:paramtypes', [router_1.Router, router_1.ActivatedRoute])
-    ], ComodinComponent);
-    return ComodinComponent;
+        __metadata('design:paramtypes', [producto_service_1.ProductoService, router_1.Router, router_1.ActivatedRoute])
+    ], BuscarComponent);
+    return BuscarComponent;
 }());
-exports.ComodinComponent = ComodinComponent;
-//# sourceMappingURL=comodin.component.js.map
+exports.BuscarComponent = BuscarComponent;
+//# sourceMappingURL=buscar.component.js.map

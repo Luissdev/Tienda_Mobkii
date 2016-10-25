@@ -23,6 +23,9 @@ var DefaultComponent = (function () {
         this._productoService.getDestacados().then(function (respuesta) { return _this.productos = respuesta; });
     }
     DefaultComponent.prototype.ngOnInit = function () {
+        if (!localStorage.getItem('token')) {
+            this._router.navigate(['/login']);
+        }
     };
     DefaultComponent = __decorate([
         core_1.Component({

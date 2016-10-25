@@ -69,5 +69,8 @@ export class CategoriaComponent implements OnInit {
     }
 
     ngOnInit() {
+        // if (!localStorage.getItem('token')) {
+        //     this._router.navigate(['/login']);
+        // }
     }
 }
